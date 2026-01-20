@@ -2,7 +2,7 @@
     "name": "ycode/evolve-ai",
     "autoload": {
         "psr-4": {
-            "Ycode\\EvolveAi\\": "src/"
+            "App\\": "App/"
         }
     },
     "authors": [
