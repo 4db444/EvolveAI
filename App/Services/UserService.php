@@ -1,49 +1,60 @@
 <?php
 namespace App\Services;
-use App\Repositories\UserRepository;
+
 use App\Repositories\Interfaces\UserRepositoryInterface;
 use App\Models\User;
+
 class UserService{
     private UserRepositoryInterface $userRepo;
+    
     public function __construct(UserRepositoryInterface $userRepo){
         $this->userRepo = $userRepo;
     }
 
-    public function register(string $fullname , string $email , string $password , string $confirmationPassword) : string{
+    public function register(string $fullname , string $email , string $password , string $confirmationPassword) : array{
 
-        if ($this->userRepo->findByEmail(trim($email))) {
-            return "this email already existe";
-        }
+        $errors=[];
 
-        else {
-            if (!strlen($password) > 8 ) {
-                return "the password must be longer than 7 char";
-            }
-            if (!strcmp($password, $confirmationPassword)) {
-                return "those passwords are not comparable";
-            }
-            if (empty(trim($fullname))) {
-                return "enter your name";
-            }
-            $user = new User(null , $fullname , $email , $password);
+        if (filter_var(trim($email), FILTER_VALIDATE_EMAIL)) $errors["email"] = "invalide email";
 
-            $this->userRepo->save($user);
-            return "sing up with success";
-        }
+        if ($this->userRepo->findByEmail(trim($email))) $errors["email"] = "this email already existe";
+
+        if (strlen($password) < 8 ) $errors["password"] = "the password must be at least 8 characters";
+
+        if ( $password != $confirmationPassword ) $errors["password_confirmation"] = "those passwords are not comparable";
+        
+        if (!strlen(trim($fullname))) $errors["fullname"] = "full name is required ";
+
+
+        if ($errors) return [
+            "success" => false,
+            "errors" => $errors
+        ];
+
+            
+        $user = new User(null , $fullname , $email , $password);
+
+        $this->userRepo->save($user);
+
+        return [
+            "success" => true,
+        ];
     }
 
-    public function login(string $email , string $password) : ?string{
-        if ($this->userRepo->findByEmail(trim($email))) {
-            $user = $this->userRepo->findByEmail(trim($email));
-            if (!$user->verifyPassword($password)) {
-                return "password incorrect";
-            }
-            return null;
+    public function login(string $email , string $password) : array{
+
+        $user = $this->userRepo->findByEmail(trim($email));
+
+        if ($user && $user->verifyPassword($password)) {
+            return [
+                "success" => true,
+                "user" => $user
+            ];
         }
 
-        else {
-            return "no account whith this email";
-        }
-        
+        return [
+            "success" => false,
+            "message" => "Wrong Credentials !"
+        ];
     }
 }
