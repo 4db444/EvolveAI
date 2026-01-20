@@ -21,27 +21,31 @@ use App\Models\User;
         }
 
 
-        
+
         public function findById(int $id): ?User{
             $stmt = $this->pdo->prepare("SELECT * FROM users WHERE id = :id");
             $stmt->execute([
                 ':id'=>$id
             ]);
 
-            return $stmt->fetch[PDO::FETCH_ASSOC];
+            $table = $stmt->fetch[PDO::FETCH_ASSOC];
+            $user = new User($table['id'] , $table['full_name'] , $table['email'] , $table['password_hash']);
+            return $user;
         }
 
 
 
 
         public function findByEmail(string $email): ?User{
-            $stmt = $this->pdo->prepare("SELECT * FROM users WHERE id = :email");
+            $stmt = $this->pdo->prepare("SELECT * FROM users WHERE email = :email");
             $stmt->execute(
                 [
                     ':email'=>$email
                 ]
             );
-            return $stmt->fetch[PDO::FETCH_ASSOC];
+            $table = $stmt->fetch[PDO::FETCH_ASSOC];
+            $user = new User($table['id'] , $table['full_name'] , $table['email'] , $table['password_hash']);
+            return $user;
         }
 
 
