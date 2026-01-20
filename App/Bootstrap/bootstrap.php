@@ -3,6 +3,10 @@
     require_once dirname(__DIR__) . "/Routes/web.php";
 
     use App\Core\Router;
+    use Dotenv\Dotenv;
+
+    $dotenv = Dotenv::createImmutable(dirname(dirname(__DIR__)));
+    $dotenv->load();
 
     $method = $_SERVER["REQUEST_METHOD"];
 
