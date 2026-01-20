@@ -2,12 +2,12 @@
 namespace App\Models;
 
 class User{
-    private int|null $id;
+    private ?int $id;
     private string $fullname;
     private string $email;
     private string $password;
 
-    public function __construct(int|null $id = null ,string $fullname , string $email , string $password) {
+    public function __construct(?int $id ,string $fullname , string $email , string $password) {
         $this->id = $id;
         $this->fullname = $fullname;
         $this->email = $email;
@@ -53,6 +53,15 @@ class User{
 
     public function setEmail(string $email) : void {
         $this->email = $email;
+    }
+
+    public static function UserFromArray (array $user){
+        return new self(
+            $user["id"],
+            $user["full_name"],
+            $user["email"],
+            $user["password_hash"]
+        );
     }
 
 }
