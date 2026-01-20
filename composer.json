@@ -1,0 +1,15 @@
+{
+    "name": "ycode/evolve-ai",
+    "autoload": {
+        "psr-4": {
+            "Ycode\\EvolveAi\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "4db444",
+            "email": "brahim77990alhyan@gmail.com"
+        }
+    ],
+    "require": {}
+}
