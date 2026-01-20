@@ -8,7 +8,7 @@
         private ?PDO $connection = NULL;
 
         private function __construct () {
-            $this->connection = new PDO(DATABASE . ":host=" . DATABASE_HOST . ";dbname=" . DATABASE_NAME, DATABASE_USER, DATABASE_PASSWORD);
+            $this->connection = new PDO("pgsql:host=" . $_ENV["DATABASE_HOST"] . ";dbname=" . $_ENV["DATABASE_NAME"], $_ENV["DATABASE_USER"], $_ENV["DATABASE_PASSWORD"]);
         }
 
         public static function get_instance(){
