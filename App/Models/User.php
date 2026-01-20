@@ -2,17 +2,28 @@
 namespace App\Models;
 
 class User{
-    private int $id;
+    private int|null $id;
     private string $fullname;
     private string $email;
     private string $password;
 
-    public function __construct(string $fullname , string $email , string $password) {
+    public function __construct(int|null $id = null ,string $fullname , string $email , string $password) {
+        $this->id = $id;
         $this->fullname = $fullname;
         $this->email = $email;
         $this->password = $password;
     }
 
+
+    //verifie password
+    public function verifyPassword ($UserPassword) : bool {
+        return password_verify($this->password , $UserPassword);
+        }
+        
+    //hash password
+    public function setPassword(string $password) : void {
+        $this->password = password_hash($password , PASSWORD_DEFAULT);
+    }
     //Getters
 
     public function getId() : int {
@@ -44,7 +55,4 @@ class User{
         $this->email = $email;
     }
 
-    public function setPassword(string $password) : void {
-        $this->password = $password;
-    }
 }
