@@ -24,4 +24,22 @@
             return $this->redirect("auth/login");
 
         }
+
+
+        public function authLogin(string $email , string $password){
+            $pdo = DATABASASE::get_Instance();
+            $userrepo = new UserRepository($pdo);
+
+            $table = $service->login($email, $password);
+
+            if(!$table['success']){
+                return $this->redirect("auth/login");
+            }
+
+            return $this->redirect("/.....");
+        }
+
+
+
+
     }
