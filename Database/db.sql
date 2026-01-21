@@ -1,4 +1,4 @@
--- Active: 1768468455063@@127.0.0.1@5432@evolveai
+-- Active: 1768475857509@@127.0.0.1@5432@postgres
 CREATE DATABASE evolveAI;
 CREATE TABLE Users(
     id SERIAL PRIMARY KEY,
