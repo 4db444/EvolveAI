@@ -24,7 +24,7 @@ use App\Models\User;
                 );
                 $user->set_id($this->pdo->lastInsertId());
 
-                
+
             }else{
                 $stmt = $this->pdo->prepare("UPDATE users SET full_name = :full_name, email=:email, password_hash = :password_hash WHERE id = :id");
                 $stmt->execute(
