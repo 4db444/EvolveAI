@@ -20,11 +20,11 @@
 </head>
 <body class="bg-animate min-h-screen flex items-center justify-center p-4">
     <nav class="fixed top-0 w-full p-6 flex justify-between items-center">
-        <a href="/landingpage" class="text-2xl font-extrabold gradient-text">AI.REVENUE</a>
-        <a href="/auth/login" class="text-gray-400 hover:text-white transition">Déjà membre ?</a>
+        <a href="<?= $_ENV["BASE_PATH"] ?>/landingpage" class="text-2xl font-extrabold gradient-text">AI.REVENUE</a>
+        <a href="<?= $_ENV["BASE_PATH"] ?>/auth/login" class="text-gray-400 hover:text-white transition">Déjà membre ?</a>
     </nav>
 
-    <form action="/dashboard" method="POST" class="glass w-full max-w-lg p-8 rounded-3xl relative overflow-hidden">
+    <form action="<?= $_ENV["BASE_PATH"] ?>/dashboard" method="POST" class="glass w-full max-w-lg p-8 rounded-3xl relative overflow-hidden">
         <div class="mb-8">
             <div class="flex justify-between mb-4">
                 <span id="step-indicator" class="text-xs font-bold uppercase tracking-widest text-purple-400">Étape 1 sur 3</span>
