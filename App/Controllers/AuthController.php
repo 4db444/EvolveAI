@@ -5,8 +5,6 @@
     use App\Repositories\UserRepository;
     use App\Core\Database;
 
-
-
     class AuthController extends Controller{
         
         public function authRegister(string $full_name, string $email, string $password, string $password_confirmation){
@@ -22,6 +20,17 @@
             }
 
             return $this->redirect("auth/login");
+        }
+      
+        public function login () {
+            return $this->render("login");
+        }
 
+        public function signup () {
+            return $this->render("signup");
+        }
+        
+        public function landingpage(){
+            return $this->render("landingpage");
         }
     }
