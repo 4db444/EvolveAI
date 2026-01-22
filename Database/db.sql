@@ -21,7 +21,6 @@ CREATE TYPE opportunity_status AS ENUM (
     'paused',
     'archived'
 );
-
 CREATE TABLE opportunities(
     id SERIAL PRIMARY KEY,
     user_id int NOT NULL,
