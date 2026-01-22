@@ -22,7 +22,7 @@
                     ]
                 ],
 
-                "max_tokens" => 100,
+                "max_tokens" => 10000,
                 "temperature" => 0.7
             ];
 
@@ -98,10 +98,110 @@
                 If you include code fences, markdown, or any text outside the JSON object, the response is INVALID.
             MESSAGE;
 
-            return $this->send($);
+            return $this->send($message);
         }
 
         public function create_opertunity (string $title, $description) {
-            
+            $message = <<<MESSAGE
+                You are an AI opportunity structuring assistant.
+
+                Your task is to take an opportunity title and opportunity description provided by the user and generate a fully structured opportunity along with a set of actionable tasks that help the user achieve the opportunity goal.
+
+                INPUT PROVIDED TO YOU:
+
+                - opportunity_title: $title
+
+                - opportunity_description: $description
+
+                YOUR OUTPUT MUST INCLUDE:
+
+                - One opportunity object
+
+                - A list of tasks derived from the opportunity
+
+                OPPORTUNITY STRUCTURE:
+
+                - title (string)
+
+                - description (string)
+
+                - earning_estimate (string)
+
+                - status (string)
+
+                TASK STRUCTURE (ARRAY):
+                Each task must include:
+
+                - title (string)
+
+                - description (string)
+
+                - deadline (string)
+
+                - order_index (number)
+
+                - target_skill (string)
+
+                - resources (array)
+
+                RESOURCE STRUCTURE (ARRAY INSIDE EACH TASK):
+                Each resource must include:
+
+                - title (string)
+
+                - type (string)
+
+                - link (string)
+
+                - generated_by_ai (string, model name)
+
+                STRICT OUTPUT RULES (MANDATORY):
+
+                Output MUST be a raw associative array (pure JSON object).
+
+                DO NOT wrap the output in code blocks.
+
+                DO NOT use backticks, markdown, comments, labels, or explanations.
+
+                DO NOT add any text before or after the JSON.
+
+                DO NOT include trailing commas.
+
+                The first character of the response MUST be {.
+
+                The last character of the response MUST be }.
+
+                OUTPUT FORMAT (STRICT):
+
+                {
+                "opportunity": {
+                "title": "string",
+                "description": "string",
+                "earning_estimate": "string",
+                "status": "string"
+                },
+                "tasks": [
+                {
+                "title": "string",
+                "description": "string",
+                "deadline": "string",
+                "order_index": 1,
+                "target_skill": "string",
+                "resources": [
+                {
+                "title": "string",
+                "type": "string",
+                "link": "string",
+                "generated_by_ai": "string"
+                }
+                ]
+                }
+                ]
+                }
+
+                If you include markdown, code fences, explanations, or any text outside the JSON object, the response is INVALID.
+            MESSAGE;
+
+            $response = $this->send($message);
         }
     }
