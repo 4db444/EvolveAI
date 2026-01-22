@@ -7,7 +7,7 @@ use PDO;
 
     class UserRepository implements UserRepositoryInterface{
         public function __construct (
-            private PDO $pdo
+            private \PDO $pdo
         ){}
 
 
@@ -23,6 +23,7 @@ use PDO;
                         ':password_hash'=>$user->getPassword()
                     ]
                 );
+
                 $user->setId($this->pdo->lastInsertId());
 
 
@@ -45,7 +46,7 @@ use PDO;
                 ':id'=>$id
             ]);
 
-            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+            $user = $stmt->fetch(\PDO::FETCH_ASSOC);
             return $user ? User::UserFromArray($user) : NULL;
         }
 
@@ -57,7 +58,7 @@ use PDO;
                 ]
             );
 
-            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+            $user = $stmt->fetch(\PDO::FETCH_ASSOC);
             return $user ? User::UserFromArray($user) : NULL;
         }
 

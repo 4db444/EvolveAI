@@ -17,17 +17,17 @@
 </head>
 <body class="bg-animate min-h-screen flex items-center justify-center p-4">
     <nav class="fixed top-0 w-full p-6 flex justify-between items-center">
-        <a href="/landingpage" class="text-2xl font-extrabold gradient-text">AI.REVENUE</a>
+        <a href="<?= $_ENV["BASE_PATH"] ?>/landingpage" class="text-2xl font-extrabold gradient-text">AI.REVENUE</a>
     </nav>
 
     <div class="glass w-full max-w-md p-8 rounded-3xl">
         <h2 class="text-3xl font-bold mb-2">Bon retour !</h2>
         <p class="text-gray-400 mb-8">Connectez-vous pour accéder à vos plans.</p>
-        <form action="" method="POST" class="space-y-4">
+        <form action="#" method="POST" class="space-y-4">
             <input type="email" placeholder="Email" class="w-full bg-white/5 border border-white/10 p-4 rounded-xl focus:ring-2 ring-purple-500 transition outline-none text-white">
             <input type="password" placeholder="Mot de passe" class="w-full bg-white/5 border border-white/10 p-4 rounded-xl focus:ring-2 ring-purple-500 transition outline-none text-white">
             <button type="submit" class="w-full py-4 bg-purple-600 rounded-xl font-bold hover:bg-purple-700 transition">Se connecter</button>
-            <p class="text-center text-sm text-gray-400 mt-4">Pas de compte ? <a href="/evolveAI/public/auth/signup" class="text-purple-400 hover:underline">Créer un compte</a></p>
+            <p class="text-center text-sm text-gray-400 mt-4">Pas de compte ? <a href="<?= $_ENV["BASE_PATH"] ?>/auth/signup" class="text-purple-400 hover:underline">Créer un compte</a></p>
         </form>
     </div>
 </body>
