@@ -47,7 +47,7 @@
                     if(isset($_POST[$name])){
                         $args[] = $_POST[$name];
                     }else if ($param->isDefaultValueAvailable()){
-                        $args[] = getDefaultValue();
+                        $args[] = $param->getDefaultValue();
                     }else {
                         echo "missing param : {$name}";
                         return;
