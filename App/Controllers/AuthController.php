@@ -3,6 +3,7 @@
 
     use App\Core\Controller;
     use App\Repositories\UserRepository;
+    use App\Services\UserService;
     use App\Core\Database;
 
     class AuthController extends Controller{

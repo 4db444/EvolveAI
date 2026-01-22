@@ -1,12 +1,12 @@
 <?php
 namespace App\Repositories;
-use App\Repositories\Interfaces;
+use App\Repositories\Interfaces\UserRepositoryInterface;
 use App\Models\User;
 
 
     class UserRepository implements UserRepositoryInterface{
         public function __construct (
-            private PDO $pdo
+            private \PDO $pdo
         ){}
 
 
@@ -22,7 +22,8 @@ use App\Models\User;
                         ':password_hash'=>$user->getPassword()
                     ]
                 );
-                $user->set_id($this->pdo->lastInsertId());
+
+                $user->setId($this->pdo->lastInsertId());
 
 
             }else{
@@ -44,7 +45,7 @@ use App\Models\User;
                 ':id'=>$id
             ]);
 
-            $table = $stmt->fetch(PDO::FETCH_ASSOC);
+            $user = $stmt->fetch(\PDO::FETCH_ASSOC);
             return $user ? User::UserFromArray($user) : NULL;
         }
 
@@ -56,7 +57,7 @@ use App\Models\User;
                 ]
             );
 
-            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+            $user = $stmt->fetch(\PDO::FETCH_ASSOC);
             return $user ? User::UserFromArray($user) : NULL;
         }
 

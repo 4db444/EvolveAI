@@ -4,7 +4,7 @@
     use ReflectionMethod;
 
     class Router {
-        private static array $routes = [
+        public static array $routes = [
             "GET" => [],
             "POST" => [],
             "PUT" => [],
@@ -29,6 +29,7 @@
 
         public static function Dispatch(string $path, string $method) {
             $method = strtoupper($method);
+            $path = str_replace($_ENV["PUBLIC_DIR"], "", $path);
             $path = $_ENV["BASE_PATH"] . $path;
             
             if (array_key_exists($path, self::$routes[$method])){
