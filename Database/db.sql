@@ -68,3 +68,5 @@ CREATE TABLE resources (
     generated_by_ai BOOLEAN DEFAULT FALSE,
     FOREIGN KEY (task_id) REFERENCES tasks(id)
 );
+
+ALTER Table opportunities DROP COLUMN external_link;
