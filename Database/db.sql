@@ -1,4 +1,4 @@
--- Active: 1768468455063@@127.0.0.1@5432@evolveai
+-- Active: 1768475857509@@127.0.0.1@5432@postgres
 CREATE DATABASE evolveAI;
 CREATE TABLE Users(
     id SERIAL PRIMARY KEY,
@@ -21,7 +21,6 @@ CREATE TYPE opportunity_status AS ENUM (
     'paused',
     'archived'
 );
-
 CREATE TABLE opportunities(
     id SERIAL PRIMARY KEY,
     user_id int NOT NULL,
@@ -68,3 +67,5 @@ CREATE TABLE resources (
     generated_by_ai BOOLEAN DEFAULT FALSE,
     FOREIGN KEY (task_id) REFERENCES tasks(id)
 );
+
+ALTER Table opportunities DROP COLUMN external_link;

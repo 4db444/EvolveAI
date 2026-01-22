@@ -4,7 +4,7 @@
     use ReflectionMethod;
 
     class Router {
-        private static array $routes = [
+        public static array $routes = [
             "GET" => [],
             "POST" => [],
             "PUT" => [],
@@ -12,23 +12,25 @@
         ];
 
         public static function Get (string $path, array $action) : void {
-            self::$routes["GET"][$path] = $action;
+            self::$routes["GET"][$_ENV["BASE_PATH"] . $path] = $action;
         }
 
         public static function Post (string $path, array $action) {
-            self::$routes["POST"][$path] = $action;
+            self::$routes["POST"][$_ENV["BASE_PATH"] . $path] = $action;
         }
 
         public static function Put (string $path, array $action) {
-            self::$routes["PUT"][$path] = $action;
+            self::$routes["PUT"][$_ENV["BASE_PATH"] . $path] = $action;
         }
 
         public static function Delete (string $path, array $action) {
-            self::$routes["DELETE"][$path] = $action;
+            self::$routes["DELETE"][$_ENV["BASE_PATH"] . $path] = $action;
         }
 
         public static function Dispatch(string $path, string $method) {
             $method = strtoupper($method);
+            $path = str_replace($_ENV["PUBLIC_DIR"], "", $path);
+            $path = $_ENV["BASE_PATH"] . $path;
             
             if (array_key_exists($path, self::$routes[$method])){
                 $action = self::$routes[$method][$path];
@@ -47,7 +49,7 @@
                     if(isset($_POST[$name])){
                         $args[] = $_POST[$name];
                     }else if ($param->isDefaultValueAvailable()){
-                        $args[] = getDefaultValue();
+                        $args[] = $param->getDefaultValue();
                     }else {
                         echo "missing param : {$name}";
                         return;
