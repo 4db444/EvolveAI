@@ -31,25 +31,42 @@
         <div class="p-6">
             <h1 class="text-xl font-extrabold tracking-tighter gradient-text">AI.REVENUE</h1>
         </div>
+        
         <nav class="flex-1 px-4 space-y-2 mt-4">
-            <a href="#" class="flex items-center space-x-3 p-3 rounded-lg text-gray-400 sidebar-link transition">
-                <i class="fas fa-chart-line"></i>
-                <span>Vue d'ensemble</span>
+            <a href="<?= $_ENV["BASE_PATH"] ?>/dashboard" class="flex items-center space-x-3 p-3 rounded-lg active-link transition">
+                <i class="fas fa-chart-line text-purple-400"></i>
+                <span class="font-medium">Vue d'ensemble</span>
             </a>
-            <a href="#" class="flex items-center space-x-3 p-3 rounded-lg bg-white/5 border-l-4 border-purple-500 transition">
-                <i class="fas fa-bolt text-purple-400"></i>
-                <span class="font-medium text-white">Opportunités</span>
-            </a>
-            <a href="#" class="flex items-center space-x-3 p-3 rounded-lg text-gray-400 sidebar-link transition">
+            <a href="<?= $_ENV["BASE_PATH"] ?>/oportunity" class="flex items-center space-x-3 p-3 rounded-lg sidebar-link transition text-gray-400 hover:text-white">
                 <i class="fas fa-robot"></i>
-                <span>Mes Robots</span>
+                <span>Stratégies IA</span>
             </a>
-            <div class="pt-10 pb-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">Compte</div>
-            <a href="#" class="flex items-center space-x-3 p-3 rounded-lg text-gray-400 sidebar-link transition">
-                <i class="fas fa-user-circle"></i>
+            <a href="<?= $_ENV["BASE_PATH"] ?>/profil" class="flex items-center space-x-3 p-3 rounded-lg sidebar-link transition text-gray-400 hover:text-white">
+                <i class="fas fa-wallet"></i>
                 <span>Profil</span>
             </a>
+            <a href="#" class="flex items-center space-x-3 p-3 rounded-lg sidebar-link transition text-gray-400 hover:text-white">
+                <i class="fas fa-history"></i>
+                <span>Historique</span>
+            </a>
+            <div class="pt-10 pb-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">Configuration</div>
+            <a href="#" class="flex items-center space-x-3 p-3 rounded-lg sidebar-link transition text-gray-400 hover:text-white">
+                <i class="fas fa-cog"></i>
+                <span>Paramètres</span>
+            </a>
         </nav>
+
+        <div class="p-6 border-t border-white/10">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-purple-600 to-cyan-400 flex items-center justify-center font-bold">
+                    JD
+                </div>
+                <div>
+                    <p class="text-sm font-bold">Jean Dupont</p>
+                    <p class="text-xs text-gray-400">Plan Pro</p>
+                </div>
+            </div>
+        </div>
     </aside>
 
     <!-- MAIN CONTENT -->
@@ -114,9 +131,9 @@
                             <p class="text-yellow-500 font-bold">Faible</p>
                         </div>
                     </div>
-                    <button class="w-full py-3 bg-white text-black rounded-2xl font-bold hover:bg-purple-500 hover:text-white transition-all">
+                    <a href="<?= $_ENV["BASE_PATH"] ?>/tasks" class="w-full py-3 bg-white text-black rounded-2xl font-bold hover:bg-purple-500 hover:text-white transition-all">
                         Lancer l'automatisation
-                    </button>
+                    </a>
                 </div>
 
                 <!-- OPPORTUNITY CARD 2 -->
