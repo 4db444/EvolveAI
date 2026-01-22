@@ -45,7 +45,7 @@ use PDO;
                 ':id'=>$id
             ]);
 
-            $table = $stmt->fetch(PDO::FETCH_ASSOC);
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
             return $user ? User::UserFromArray($user) : NULL;
         }
 
