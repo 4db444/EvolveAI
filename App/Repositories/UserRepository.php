@@ -1,7 +1,8 @@
 <?php
 namespace App\Repositories;
-use App\Repositories\Interfaces;
+use App\Repositories\Interfaces\UserRepositoryInterface;
 use App\Models\User;
+use PDO;
 
 
     class UserRepository implements UserRepositoryInterface{
@@ -22,7 +23,7 @@ use App\Models\User;
                         ':password_hash'=>$user->getPassword()
                     ]
                 );
-                $user->set_id($this->pdo->lastInsertId());
+                $user->setId($this->pdo->lastInsertId());
 
 
             }else{
