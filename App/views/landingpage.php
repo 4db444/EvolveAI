@@ -21,11 +21,11 @@
 <body class="bg-animate min-h-screen">
     <nav class="fixed top-0 w-full z-50 p-6 flex justify-between items-center bg-transparent">
         <div class="text-2xl font-extrabold tracking-tighter">
-            <a href="/landingpage" class="gradient-text">AI.REVENUE</a>
+            <a href="<?= $_ENV["BASE_PATH"] ?>/landingpage" class="gradient-text">AI.REVENUE</a>
         </div>
         <div class="space-x-4">
-            <a href="/auth/login" class="px-5 py-2 hover:text-cyan-400 transition">Connexion</a>
-            <a href="/auth/signup" class="px-6 py-2 bg-purple-600 rounded-full font-semibold hover:bg-purple-700 transition shadow-lg shadow-purple-500/20">Essayer Gratuitement</a>
+            <a href="<?= $_ENV["BASE_PATH"] ?>/auth/login" class="px-5 py-2 hover:text-cyan-400 transition">Connexion</a>
+            <a href="<?= $_ENV["BASE_PATH"] ?>/auth/signup" class="px-6 py-2 bg-purple-600 rounded-full font-semibold hover:bg-purple-700 transition shadow-lg shadow-purple-500/20">Essayer Gratuitement</a>
         </div>
     </nav>
 
@@ -41,7 +41,7 @@
                 Débloquez votre potentiel financier avec des plans d'action quotidiens personnalisés et des opportunités réelles identifiées par notre moteur intelligent.
             </p>
             <div class="flex flex-col md:flex-row gap-4 justify-center">
-                <a href="/auth/signup" class="px-10 py-4 bg-white text-black rounded-full font-bold text-lg hover:bg-opacity-90 transition transform hover:scale-105">
+                <a href="<?= $_ENV["BASE_PATH"] ?>/auth/signup" class="px-10 py-4 bg-white text-black rounded-full font-bold text-lg hover:bg-opacity-90 transition transform hover:scale-105">
                     Commencer l'Aventure
                 </a>
                 <button class="px-10 py-4 glass rounded-full font-bold text-lg hover:bg-white/10 transition border border-white/20">
