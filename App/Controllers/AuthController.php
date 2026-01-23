@@ -5,7 +5,7 @@
     use App\Repositories\UserRepository;
     use App\Services\UserService;
     use App\Core\Database;
-    use App\Services\UserService;
+    // use App\Services\UserService;
 
     class AuthController extends Controller{
         

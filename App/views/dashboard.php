@@ -31,17 +31,17 @@
         </div>
         
         <nav class="flex-1 px-4 space-y-2 mt-4">
-            <a href="#" class="flex items-center space-x-3 p-3 rounded-lg active-link transition">
+            <a href="<?= $_ENV["BASE_PATH"] ?>/dashboard" class="flex items-center space-x-3 p-3 rounded-lg active-link transition">
                 <i class="fas fa-chart-line text-purple-400"></i>
                 <span class="font-medium">Vue d'ensemble</span>
             </a>
-            <a href="#" class="flex items-center space-x-3 p-3 rounded-lg sidebar-link transition text-gray-400 hover:text-white">
+            <a href="<?= $_ENV["BASE_PATH"] ?>/oportunity" class="flex items-center space-x-3 p-3 rounded-lg sidebar-link transition text-gray-400 hover:text-white">
                 <i class="fas fa-robot"></i>
                 <span>Stratégies IA</span>
             </a>
-            <a href="#" class="flex items-center space-x-3 p-3 rounded-lg sidebar-link transition text-gray-400 hover:text-white">
+            <a href="<?= $_ENV["BASE_PATH"] ?>/profil" class="flex items-center space-x-3 p-3 rounded-lg sidebar-link transition text-gray-400 hover:text-white">
                 <i class="fas fa-wallet"></i>
-                <span>Portefeuille</span>
+                <span>Profil</span>
             </a>
             <a href="#" class="flex items-center space-x-3 p-3 rounded-lg sidebar-link transition text-gray-400 hover:text-white">
                 <i class="fas fa-history"></i>
