@@ -15,7 +15,7 @@ use PDO;
 
             if($user->getId() === null){
 
-                $stmt = $this->pdo->prepare("INSERT INTO users(full_name,email,password_hash) VALUES(:full_name,:email,:password_hash)  ");
+                $stmt = $this->pdo->prepare("INSERT INTO users(full_name,email,password_hash) VALUES(:full_name,:email,:password_hash)");
                 $stmt->execute(
                     [
                         ':full_name'=>$user->getFullName(),
@@ -25,7 +25,6 @@ use PDO;
                 );
 
                 $user->setId($this->pdo->lastInsertId());
-
 
             }else{
                 $stmt = $this->pdo->prepare("UPDATE users SET full_name = :full_name, email=:email, password_hash = :password_hash WHERE id = :id");

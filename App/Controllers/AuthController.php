@@ -5,17 +5,14 @@
     use App\Repositories\UserRepository;
     use App\Services\UserService;
     use App\Core\Database;
-    use App\Services\UserService;
 
     class AuthController extends Controller{
         
-        public function authRegister(string $full_name,string $email, string $password, string $password_confirmation){
+        public function register(string $full_name,string $email, string $password, string $password_confirmation){
+            
+            $UserService = new UserService(new UserRepository(Database::get_instance()));
 
-            $pdo = Database::get_instance();
-            $userrepo = new UserRepository($pdo);
-            $service = new UserService($userrepo);
-
-            $result = $service->register(   
+            $result = $UserService->register(   
                 $full_name,
                 $email,
                 $password,
@@ -23,10 +20,10 @@
             );
 
             if(!$result['success']){
-                return $this->redirect("auth/signup");
+                return $this->redirect("/auth/signup");
             }
 
-            return $this->redirect("auth/login");
+            return $this->redirect("/auth/login");
         }
       
         public function login () {
@@ -42,10 +39,9 @@
         }
 
 
-        public function authLogin(string $email, string $password){
-            $pdo = Database::get_instance();
-            $userrepo = new UserRepository($pdo);
-            $service = new UserService($userrepo);
+        public function authenticate(string $email, string $password){
+
+            $service = new UserService(new UserRepository(Database::get_instance()));
 
             $result = $service->login(
                 $email,
@@ -53,22 +49,17 @@
             );
 
             if(!$result['success']){
-                return $this->redirect("auth/login");
+                return $this->redirect("/auth/login");
             }
+
             $user = $result['user'];
-            $_SESSION['user_id'] = $user->getId();
+            $_SESSION['user'] = $user;
 
-            return $this->redirect("dashboard");
+            return $this->redirect("/dashboard");
         }
-
-
 
         public function logout(){
             session_destroy();
             return $this->redirect('auth/login');
         }
-
-
-
-
     }

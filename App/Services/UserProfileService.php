@@ -12,12 +12,12 @@ class UserProfileService{
         $this->profileRepository = $profileRepository;
     }
 
-    public function getUserProfile(int $userId): ?UserProfile
+    public function findByUserId(int $userId): ?UserProfile
     {
         return $this->profileRepository->findByUserId($userId);
     }
 
-    public function saveUserProfile(int $userId, int $incomeGoal, int $availableTime): bool {
+    public function save(int $userId, int $incomeGoal, int $availableTime): bool {
         $existingProfile = $this->profileRepository->findByUserId($userId);
 
         if ($existingProfile) {

@@ -1,6 +1,6 @@
--- Active: 1768475857509@@127.0.0.1@5432@postgres
-CREATE DATABASE evolveAI;
-CREATE TABLE Users(
+-- Active: 1769116929061@@127.0.0.1@5432@evolveai
+CREATE DATABASE evolveai;
+CREATE TABLE users(
     id SERIAL PRIMARY KEY,
     full_name VARCHAR(100) NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
@@ -8,31 +8,31 @@ CREATE TABLE Users(
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE User_Profile(
+CREATE TABLE user_urofile(
     id SERIAL PRIMARY KEY,
     user_id int NOT NULL,
     income_goal DECIMAL(10,2) NOT NULL,
     available_time int not NULL,
     FOREIGN KEY (user_id) REFERENCES Users(id)
 );
+
 CREATE TYPE opportunity_status AS ENUM (
     'active',
     'completed',
     'paused',
     'archived'
 );
+
 CREATE TABLE opportunities(
     id SERIAL PRIMARY KEY,
     user_id int NOT NULL,
     title VARCHAR(255) NOT null,
     description VARCHAR(255) NOT NULL,
     earning_estimate DECIMAL(10,2) NOT NULL,
-    external_link VARCHAR(255) NOT NULL,
     status opportunity_status NOT NULL DEFAULT 'active',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES Users(id)
 );
-
 
 CREATE TABLE tasks (
     id SERIAL PRIMARY KEY,
@@ -45,7 +45,6 @@ CREATE TABLE tasks (
     FOREIGN KEY (opportunity_id) REFERENCES opportunities(id)
 );
 
-
 CREATE TABLE task_progress (
     id SERIAL PRIMARY KEY,
     task_id INT NOT NULL UNIQUE,
@@ -56,8 +55,6 @@ CREATE TABLE task_progress (
     FOREIGN KEY (task_id) REFERENCES tasks(id)
 );
 
-
-
 CREATE TABLE resources (
     id SERIAL PRIMARY KEY,
     task_id INT NOT NULL,
@@ -67,5 +64,3 @@ CREATE TABLE resources (
     generated_by_ai BOOLEAN DEFAULT FALSE,
     FOREIGN KEY (task_id) REFERENCES tasks(id)
 );
-
-ALTER Table opportunities DROP COLUMN external_link;

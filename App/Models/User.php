@@ -16,9 +16,9 @@ class User{
 
 
     //verifie password
-    public function verifyPassword ($UserPassword) : bool {
-        return password_verify($this->password , $UserPassword);
-        }
+    public function verifyPassword ($password) : bool {
+        return password_verify($password, $this->password );
+    }
         
     //hash password
     public function setPassword(string $password) : void {
@@ -26,7 +26,7 @@ class User{
     }
     //Getters
 
-    public function getId() : int {
+    public function getId() : ?int {
         return $this->id;
     }
 
