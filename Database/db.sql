@@ -8,11 +8,56 @@ CREATE TABLE users(
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE user_urofile(
+CREATE TYPE age_interval AS ENUM (
+    '18-24',
+    '25-34',
+    '35-44',
+    '45+'
+);
+
+CREATE TYPE work_rhythm AS ENUM (
+    'Horaire classique (9h–17h)',
+    'Travail de nuit',
+    'Horaires flexibles',
+    'Je suis à la retraite'
+);
+
+CREATE TYPE work_hours AS ENUM (
+    'Moins de 4 heures',
+    '4 à 6 heures',
+    '6 à 8 heures',
+    'Plus de 8 heures'
+);
+
+CREATE TYPE financial_situation AS ENUM (
+    'Je suis financièrement stable',
+    'Je m en sors, mais c est serré',
+    'J ai du mal à suivre'
+);
+
+CREATE TYPE device AS ENUM (
+    'Téléphone',
+    'Ordinateur',
+    'Tablette',
+    'Plusieurs appareils'
+);
+
+CREATE TYPE lesson_format AS ENUM (
+    'Texte',
+    'Vidéo',
+    'Leçons interactives',
+    'Peu importe'
+);
+
+CREATE TABLE user_profiles (
     id SERIAL PRIMARY KEY,
     user_id int NOT NULL,
-    income_goal DECIMAL(10,2) NOT NULL,
-    available_time int not NULL,
+    age_interval age_interval NOT NULL,
+    work_rhythm work_rhythm NOT NULL,
+    work_hours work_hours NOT NULL,
+    financial_situation financial_situation NOT NULL,
+    device device NOT NULL,
+    lesson_format lesson_format NOT NULL,
     FOREIGN KEY (user_id) REFERENCES Users(id)
 );
 
