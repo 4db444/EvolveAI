@@ -4,13 +4,26 @@
     use App\Core\Controller;
     use App\Repositories\UserRepository;
     use App\Services\UserService;
+    use App\Repositories\UserProfileRepository;
+    use App\Services\UserProfileService;
     use App\Core\Database;
 
     class AuthController extends Controller{
         
-        public function register(string $full_name,string $email, string $password, string $password_confirmation){
-            
+        public function register(
+            string $full_name,
+            string $email,
+            string $password,
+            string $password_confirmation,
+            string $age_interval,
+            string $work_rhythm,
+            string $work_hours,
+            string $financial_situation,
+            string $device,
+            string $lesson_format
+        ){
             $UserService = new UserService(new UserRepository(Database::get_instance()));
+            $UserProfileService = new UserProfileService(new UserProfileRepository(Database::get_instance()));
 
             $result = $UserService->register(   
                 $full_name,
@@ -22,6 +35,17 @@
             if(!$result['success']){
                 return $this->redirect("/auth/signup");
             }
+
+            $user = $result["user"];
+
+            $UserProfileService->save(
+                $user->getId(),
+                $age_interval,
+                $work_rhythm,
+                $work_hours,
+                $financial_situation,
+                $device, $lesson_format
+            );
 
             return $this->redirect("/auth/login");
         }
