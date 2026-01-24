@@ -15,7 +15,7 @@ class UserService{
 
         $errors=[];
 
-        if (filter_var(trim($email), FILTER_VALIDATE_EMAIL)) $errors["email"] = "invalide email";
+        if (!filter_var(trim($email), FILTER_VALIDATE_EMAIL)) $errors["email"] = "invalide email";
 
         if ($this->userRepo->findByEmail(trim($email))) $errors["email"] = "this email already existe";
 
@@ -32,19 +32,20 @@ class UserService{
         ];
 
             
-        $user = new User(null , $fullname , $email , $password);
+        $user = new User(null , $fullname , $email , password_hash($password, PASSWORD_DEFAULT));
 
         $this->userRepo->save($user);
 
         return [
             "success" => true,
+            "user" => $user
         ];
     }
 
     public function login(string $email , string $password) : array{
 
         $user = $this->userRepo->findByEmail(trim($email));
-
+        
         if ($user && $user->verifyPassword($password)) {
             return [
                 "success" => true,
