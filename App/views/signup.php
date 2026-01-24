@@ -56,7 +56,7 @@
 
                 <div>
                     <label class="block text-sm text-gray-400 mb-2">Quel est votre âge ?</label>
-                    <select name="age" class="w-full bg-white/5 border border-white/10 p-4 rounded-xl outline-none" required>
+                    <select name="age_interval" class="w-full bg-white/5 border border-white/10 p-4 rounded-xl outline-none" required>
                         <option value="" disabled selected>Sélectionnez votre tranche d'âge</option>
                         <option>18-24</option>
                         <option>25-34</option>
@@ -67,18 +67,18 @@
 
                 <div>
                     <label class="block text-sm text-gray-400 mb-2">Quel est votre rythme de travail actuel ?</label>
-                    <select name="work_schedule" class="w-full bg-white/5 border border-white/10 p-4 rounded-xl outline-none" required>
+                    <select name="work_rhythm" class="w-full bg-white/5 border border-white/10 p-4 rounded-xl outline-none" required>
                         <option value="" disabled selected>Sélectionnez une option</option>
-                        <option>💼 Horaire classique (9h–17h)</option>
-                        <option>🌙 Travail de nuit</option>
-                        <option>🌀 Horaires flexibles</option>
-                        <option>🧶 Je suis à la retraite</option>
+                        <option value="Horaire classique (9h–17h)">💼 Horaire classique (9h–17h)</option>
+                        <option value="Travail de nuit">🌙 Travail de nuit</option>
+                        <option value="Horaires flexibles">🌀 Horaires flexibles</option>
+                        <option value="Je suis à la retraite">🧶 Je suis à la retraite</option>
                     </select>
                 </div>
 
                 <div>
                     <label class="block text-sm text-gray-400 mb-2">Combien d'heures aimeriez-vous travailler par jour ?</label>
-                    <select name="daily_hours" class="w-full bg-white/5 border border-white/10 p-4 rounded-xl outline-none" required>
+                    <select name="work_hours" class="w-full bg-white/5 border border-white/10 p-4 rounded-xl outline-none" required>
                         <option value="" disabled selected>Sélectionnez une option</option>
                         <option>Moins de 4 heures</option>
                         <option>4 à 6 heures</option>
@@ -101,11 +101,11 @@
 
                 <div>
                     <label class="block text-sm text-gray-400 mb-2">Comment vous sentez-vous par rapport à votre situation financière actuelle ?</label>
-                    <select name="financial_feeling" class="w-full bg-white/5 border border-white/10 p-4 rounded-xl outline-none" required>
+                    <select name="financial_situation" class="w-full bg-white/5 border border-white/10 p-4 rounded-xl outline-none" required>
                         <option value="" disabled selected>Sélectionnez une option</option>
-                        <option>😌 Je suis financièrement stable</option>
-                        <option>🤕 Je m'en sors, mais c'est serré</option>
-                        <option>😐 J'ai du mal à suivre</option>
+                        <option value="Je suis financièrement stable">😌 Je suis financièrement stable</option>
+                        <option value="Je m en sors, mais c est serré">🤕 Je m'en sors, mais c'est serré</option>
+                        <option value="J ai du mal à suivre">😐 J'ai du mal à suivre</option>
                     </select>
                 </div>
 
