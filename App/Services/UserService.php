@@ -38,6 +38,7 @@ class UserService{
 
         return [
             "success" => true,
+            "user" => $user
         ];
     }
 
