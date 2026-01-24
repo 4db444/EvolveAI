@@ -1,7 +1,7 @@
 <?php
     namespace App\Services;
 
-    use App\Tepositories\UserProfileRepositoryInterface;
+    use App\Repositories\UserProfileRepositoryInterface;
     use App\Models\UserProfile;
 
     class AiService {
