@@ -92,6 +92,11 @@
                     class="w-full py-4 bg-gradient-to-r from-purple-600 to-cyan-500 text-white rounded-2xl font-bold hover:opacity-90 transition transform hover:scale-[1.02] shadow-lg shadow-purple-500/25 mt-4">
                     Mettre à jour le mot de passe
                 </button>
+                <div class="mt-8 text-center">
+                    <a href="<?= $_ENV["BASE_PATH"] ?>/auth/login" class="text-sm text-gray-400 hover:text-white transition flex items-center justify-center">
+                        <i class="fas fa-arrow-left mr-2 text-xs"></i> Retour à la connexion
+                    </a>
+                </div>
             </form>
         </div>
 

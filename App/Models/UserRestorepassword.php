@@ -1,13 +1,13 @@
 <?php
 namespace App\Models;
 
-class Restorepassword{
+class UserRestorepassword{
     private ?int $user_id;
     private string $email;
     private string $password;
   
 
-    public function __construct(?int $user_id, string $email , string $password) {
+    public function __construct(?int $user_id, string $email, string $password) {
         $this->user_id = $user_id;
         $this->email = $email;
         $this->password = $password;
@@ -30,6 +30,7 @@ class Restorepassword{
     public function getPassword() : string {
         return $this->password;
     }
+
     
     //Setters
     public function setEmail(string $email) : void {
@@ -40,10 +41,11 @@ class Restorepassword{
         $this->user_id = $user_id;
     }
 
-    public static function RestorepasswordFromArray (array $Restorepassword){
+    public static function UserRestorepasswordFromArray (array $user){
         return new self(
-            $Restorepassword["email"],
-            $Restorepassword["password_hash"]
+            $user["id"],
+            $user["email"],
+            $user["password_hash"]
         );
     }
 

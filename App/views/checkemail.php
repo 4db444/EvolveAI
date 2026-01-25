@@ -59,7 +59,7 @@
             </div>
 
             <!-- FORMULAIRE -->
-            <form id="recovery-form" class="space-y-6">
+            <form action="<?= $_ENV["BASE_PATH"] ?>/check/email" method="GET" id="recovery-form" class="space-y-6">
                 <div class="space-y-2">
                     <label class="text-xs font-bold text-gray-500 uppercase tracking-widest ml-1">Adresse Email</label>
                     <div class="relative">
@@ -79,7 +79,7 @@
             </form>
 
             <div class="mt-8 text-center">
-                <a href="login.php" class="text-sm text-gray-400 hover:text-white transition flex items-center justify-center">
+                <a href="<?= $_ENV["BASE_PATH"] ?>/auth/login" class="text-sm text-gray-400 hover:text-white transition flex items-center justify-center">
                     <i class="fas fa-arrow-left mr-2 text-xs"></i> Retour à la connexion
                 </a>
             </div>

@@ -28,6 +28,7 @@
             <input name="password" type="password" placeholder="Mot de passe" class="w-full bg-white/5 border border-white/10 p-4 rounded-xl focus:ring-2 ring-purple-500 transition outline-none text-white">
             <button type="submit" class="w-full py-4 bg-purple-600 rounded-xl font-bold hover:bg-purple-700 transition">Se connecter</button>
             <p class="text-center text-sm text-gray-400 mt-4">Pas de compte ? <a href="<?= $_ENV["BASE_PATH"] ?>/auth/signup" class="text-purple-400 hover:underline">Créer un compte</a></p>
+            <p class="text-center text-sm text-gray-400 mt-4">Restore Password ? <a href="<?= $_ENV["BASE_PATH"] ?>/restorepassword" class="text-purple-400 hover:underline">Oublié</a></p>
         </form>
     </div>
 </body>
