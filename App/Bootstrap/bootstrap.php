@@ -1,9 +1,9 @@
 <?php
     require_once dirname(__DIR__) . "/../vendor/autoload.php";
+    session_start();
     
     use App\Core\Router;
-use Dom\ProcessingInstruction;
-use Dotenv\Dotenv;
+    use Dotenv\Dotenv;
     
     $dotenv = Dotenv::createImmutable(dirname(dirname(__DIR__)));
     $dotenv->load();
