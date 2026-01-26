@@ -53,7 +53,6 @@ class Router {
                 $controller = new $action[0]();
                 $methodName = $action[1];
 
-                // Extract named URL params
                 $urlParams = array_filter(
                     $matches,
                     fn($key) => !is_int($key),
@@ -87,3 +86,10 @@ class Router {
         echo "route does not exist";
     }
 }
+
+
+
+
+
+
+    

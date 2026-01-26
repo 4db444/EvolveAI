@@ -5,8 +5,9 @@
     use App\Controllers\ProfilControler;
     use App\Controllers\DashboardControler;
     use App\Controllers\TasksControler;
+    use App\Controllers\UserRestorepasswordController;
 
-    Router::Get("/", [AuthController::class, "landingpage"]);
+    Router::Get("/landingpage", [AuthController::class, "landingpage" ]);
     Router::Get("/auth/signup", [AuthController::class, "signup"]);
     Router::Get("/auth/login", [AuthController::class, "login"]);
 
@@ -22,3 +23,8 @@
 
     Router::Post("/suggestions", [OpportunityController::class, "suggestions"]);
     Router::Post("/opportunity/commit", [OpportunityController::class, "commit"]);
+    Router::Get("/oportunity", [OportunityControler::class, "oportunity"]);
+    
+    Router::Get("/showcheckEmail", [UserRestorepasswordController::class, "showcheckEmail"]);
+    Router::POST("/valideEmail", [UserRestorepasswordController::class, "valideEmail"]);
+    Router::POST("/updatePassword", [UserRestorepasswordController::class, "updatePassword"]);
