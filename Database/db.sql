@@ -63,17 +63,15 @@ CREATE TABLE user_profiles (
 
 CREATE TYPE opportunity_status AS ENUM (
     'active',
-    'completed',
-    'paused',
-    'archived'
+    'completed'
 );
 
 CREATE TABLE opportunities(
     id SERIAL PRIMARY KEY,
     user_id int NOT NULL,
     title VARCHAR(255) NOT null,
-    description VARCHAR(255) NOT NULL,
-    earning_estimate DECIMAL(10,2) NOT NULL,
+    description TEXT NOT NULL,
+    earning_estimate VARCHAR(255) NOT NULL,
     status opportunity_status NOT NULL DEFAULT 'active',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES Users(id)
@@ -106,6 +104,6 @@ CREATE TABLE resources (
     title VARCHAR(255) NOT NULL,
     type VARCHAR(50) NOT NULL,  
     link VARCHAR(500),
-    generated_by_ai BOOLEAN DEFAULT FALSE,
+    generated_by_ai VARCHAR(255) DEFAULT FALSE,
     FOREIGN KEY (task_id) REFERENCES tasks(id)
 );
