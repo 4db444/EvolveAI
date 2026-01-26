@@ -11,17 +11,25 @@ class TaskProgressService{
         $this->taskProgressRepo = $taskProgressRepo;
     }
 
+    public function save(int $task_id, bool $is_completed, ?string $submitted_result, ?string $ai_feedback) {
+        return $this->taskProgressRepo->save(new TaskProgress(
+            null,
+            $task_id,
+            $is_completed,
+            $submitted_result,
+            $ai_feedback
+        ));
+    }
 
     public function getTaskProgressById(int $id): ?TaskProgress
     {
-        $taskProgress = $this->taskProgressRepository->findById($id);
+        $taskProgress = $this->taskProgressRepo->findById($id);
         return $taskProgress ? $taskProgress : null;
     }
 
     public function getTaskProgressByTaskId(int $taskId): ?TaskProgress
     {
-        $taskProgress = $this->taskProgressRepository->findByTaskId($taskId);
-        return $taskProgress ? $taskProgress : null;
+        return $this->taskProgressRepo->findByTaskId($taskId);
     }
 
 
