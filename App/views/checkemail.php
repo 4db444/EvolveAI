@@ -59,7 +59,7 @@
             </div>
 
             <!-- FORMULAIRE -->
-            <form action="<?= $_ENV["BASE_PATH"] ?>/check/email" method="GET" id="recovery-form" class="space-y-6">
+            <form action="<?= $_ENV["BASE_PATH"] ?>/restorepassword" method="POST" class="space-y-6">
                 <div class="space-y-2">
                     <label class="text-xs font-bold text-gray-500 uppercase tracking-widest ml-1">Adresse Email</label>
                     <div class="relative">

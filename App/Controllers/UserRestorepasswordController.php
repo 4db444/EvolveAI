@@ -23,7 +23,7 @@
             }
 
             
-            return $this->redirect("/auth/login");
+            return $this->redirect("/restorepassword");
         }
 
         public function userrestorePassword(
@@ -47,8 +47,12 @@
             return $this->redirect("/auth/login");
         }
       
-        public function restorepassword () {
+        public function checkEmail () {
             return $this->render("checkemail");
+        }
+
+        public function restorePassword () {
+            return $this->render("restorepassword");
         }
 
         public function signup () {
