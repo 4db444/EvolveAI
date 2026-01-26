@@ -34,6 +34,8 @@ class UserProfileService{
         $existingProfile = $this->profileRepository->findByUserId($user_id);
 
         if ($existingProfile) {
+            $existingProfile->setId($existingProfile->getId());
+            $existingProfile->setUserId($user_id);
             $existingProfile->setAgeInterval($age_interval);
             $existingProfile->setWorkRhythm($work_rhythm);
             $existingProfile->setWorkHours($work_hours);

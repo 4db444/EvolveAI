@@ -6,10 +6,10 @@ class Opportunity{
     private int $user_id;
     private string $title;
     private string $description;
-    private float $earning_estimate;
+    private string $earning_estimate;
     private string $status;
 
-    public function __construct(?int $id, int $user_id, string $title, string $description, float $earning_estimate, string $status){
+    public function __construct(?int $id, int $user_id, string $title, string $description, string $earning_estimate, string $status){
         $this->id = $id;
         $this->user_id = $user_id;
         $this->title = $title;
@@ -20,7 +20,7 @@ class Opportunity{
 
     //Getters
 
-    public function getId() : int {
+    public function getId() : ?int {
         return $this->id;
     }
 
@@ -36,7 +36,7 @@ class Opportunity{
         return $this->description;
     }
 
-    public function getEarning_estimate() : float {
+    public function getEarning_estimate() : string {
         return $this->earning_estimate;
     }
 

@@ -10,7 +10,7 @@ use PDO;
         ){}
 
 
-        public function save(Opportunity $opportunity): void{
+        public function save(Opportunity $opportunity) : Opportunity{
 
             if($opportunity->getId() === null){
 
@@ -38,7 +38,7 @@ use PDO;
                     ]
                 );
             }
-
+            return $opportunity;
         }
 
 

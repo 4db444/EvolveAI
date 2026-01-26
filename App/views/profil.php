@@ -1,12 +1,3 @@
-<?php
-
-use App\Services\UserProfileService;
-use App\Repositories\UserProfileRepository;
-use App\Core\Database;
-
-session_start();
-$user = $_SESSION['user'];
-?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -55,7 +46,7 @@ $user = $_SESSION['user'];
                 <i class="fas fa-chart-line text-purple-400"></i>
                 <span class="font-medium">Vue d'ensemble</span>
             </a>
-            <a href="<?= $_ENV["BASE_PATH"] ?>/oportunity" class="flex items-center space-x-3 p-3 rounded-lg sidebar-link transition text-gray-400 hover:text-white">
+            <a href="<?= $_ENV["BASE_PATH"] ?>/opportunity" class="flex items-center space-x-3 p-3 rounded-lg sidebar-link transition text-gray-400 hover:text-white">
                 <i class="fas fa-robot"></i>
                 <span>Stratégies IA</span>
             </a>
@@ -106,7 +97,7 @@ $user = $_SESSION['user'];
                 <div class="relative group">
                     <div class="w-24 h-24 rounded-full bg-gradient-to-tr from-purple-600 to-cyan-400 flex items-center justify-center text-3xl font-bold border-4 border-white/10 text-black">
                         <?php 
-                            $fullname = $user->getFullName();
+                            $fullname = $_SESSION["user"]->getFullName();
                             echo substr($fullname, 0, 2);
                         ?>
                     </div>
@@ -115,38 +106,32 @@ $user = $_SESSION['user'];
                     </button>
                 </div>
                 <div class="text-center md:text-left">
-                    <h2 class="text-xl font-bold text-white"><?= $user->getFullName() ?></h2>
+                    <h2 class="text-xl font-bold text-white"><?= $_SESSION["user"]->getFullName() ?></h2>
                     <p class="text-gray-400 text-sm">Membre depuis Janvier 2024</p>
                     <span class="inline-block mt-2 px-3 py-1 bg-purple-500/20 text-purple-400 text-xs font-bold rounded-full uppercase">Plan Premium</span>
                 </div>
             </div>
 
-            <?php 
-
-                $userprofilerepo = new UserProfileRepository(Database::get_instance());
-                $userprofile = new UserProfileService($userprofilerepo);
-                $userprofile->findByUserId($_SESSION["id"]);
-            ?>
-
             <!-- FORMULAIRE INFORMATIONS DE BASE -->
-            <form action="#" method="POST" class="glass p-8 rounded-3xl">
+            <form action="<?= $_ENV["BASE_PATH"] ?>/updateInfo" method="POST" class="glass p-8 rounded-3xl">
                 <h3 class="text-xl font-bold mb-6 italic border-b border-white/10 pb-2">Informations de compte</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="space-y-2">
                         <label class="text-sm font-semibold text-gray-400 ml-1">Nom complet</label>
-                        <input type="text" name="name" value="<?= $user->getFullName() ?>" class="input-field w-full px-4 py-3 rounded-xl text-white">
+                        <input type="hidden" name="user_id" value="<?= $_SESSION['user']->getId() ?>" >
+                        <input type="text" required name="full_name" value="<?= $_SESSION['user']->getFullName() ?>" class="input-field w-full px-4 py-3 rounded-xl text-white">
                     </div>
                     <div class="space-y-2">
                         <label class="text-sm font-semibold text-gray-400 ml-1">Adresse Email</label>
-                        <input type="email" name="email" value="<?= $user->getEmail() ?>" class="input-field w-full px-4 py-3 rounded-xl text-white">
+                        <input type="email" required name="email" value="<?= $_SESSION['user']->getEmail() ?>" class="input-field w-full px-4 py-3 rounded-xl text-white">
                     </div>
                     <div class="space-y-2">
                         <label class="text-sm font-semibold text-gray-400 ml-1">Nouveau mot de passe</label>
-                        <input type="password" name="password" placeholder="••••••••" class="input-field w-full px-4 py-3 rounded-xl text-white">
+                        <input type="password" required name="password" placeholder="••••••••" class="input-field w-full px-4 py-3 rounded-xl text-white">
                     </div>
                     <div class="space-y-2">
                         <label class="text-sm font-semibold text-gray-400 ml-1">Confirmer le mot de passe</label>
-                        <input type="password" name="password_confirmation" placeholder="••••••••" class="input-field w-full px-4 py-3 rounded-xl text-white">
+                        <input type="password" required name="password_confirmation" placeholder="••••••••" class="input-field w-full px-4 py-3 rounded-xl text-white">
                     </div>
                 </div>
                 <div class="mt-6 flex justify-end">
@@ -157,15 +142,17 @@ $user = $_SESSION['user'];
             </form>
 
             <!-- FORMULAIRE QUESTIONNAIRE IA (LES 6 QUESTIONS) -->
-            <form action="#" method="POST" class="glass p-8 rounded-3xl">
+            <form action="<?= $_ENV["BASE_PATH"] ?>/updateQuestion" method="POST" class="glass p-8 rounded-3xl">
                 <h3 class="text-xl font-bold mb-6 italic border-b border-white/10 pb-2">Personnalisation & Objectifs IA</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     
+                    <input type="hidden" name="user_id" value="<?= $_SESSION['user']->getId() ?>" >
+
                     <!-- 1. Âge -->
                     <div class="space-y-2">
                         <label class="text-sm font-semibold text-gray-400 ml-1">Quel est votre âge ?</label>
                         <select name="age_interval" class="w-full bg-white/5 border border-white/10 p-4 rounded-xl outline-none" required>
-                            <option value="" disabled selected>Sélectionnez votre tranche d'âge</option>
+                            <option value ="<?= $_SESSION["userprofile"]->getAgeInterval() ?>" ><?= $_SESSION["userprofile"]->getAgeInterval() ?></option>
                             <option>18-24</option>
                             <option>25-34</option>
                             <option>35-44</option>
@@ -177,7 +164,7 @@ $user = $_SESSION['user'];
                     <div class="space-y-2">
                         <label class="text-sm font-semibold text-gray-400 ml-1">Rythme de travail actuel</label>
                         <select name="work_rhythm" class="w-full bg-white/5 border border-white/10 p-4 rounded-xl outline-none" required>
-                            <option value="" disabled selected>Sélectionnez une option</option>
+                            <option value ="<?= $_SESSION["userprofile"]->getWorkRhythm() ?>" selected><?= $_SESSION["userprofile"]->getWorkRhythm() ?></option>
                             <option value="Horaire classique (9h–17h)">💼 Horaire classique (9h–17h)</option>
                             <option value="Travail de nuit">🌙 Travail de nuit</option>
                             <option value="Horaires flexibles">🌀 Horaires flexibles</option>
@@ -189,7 +176,7 @@ $user = $_SESSION['user'];
                     <div class="space-y-2">
                         <label class="text-sm font-semibold text-gray-400 ml-1">Heures de travail / jour souhaitées</label>
                         <select name="work_hours" class="w-full bg-white/5 border border-white/10 p-4 rounded-xl outline-none" required>
-                            <option value="" disabled selected>Sélectionnez une option</option>
+                            <option value ="<?= $_SESSION["userprofile"]->getWorkHours() ?>" selected><?= $_SESSION["userprofile"]->getWorkHours() ?></option>
                             <option>Moins de 4 heures</option>
                             <option>4 à 6 heures</option>
                             <option>6 à 8 heures</option>
@@ -200,8 +187,8 @@ $user = $_SESSION['user'];
                     <!-- 4. Situation financière -->
                     <div class="space-y-2">
                         <label class="text-sm font-semibold text-gray-400 ml-1">Situation financière actuelle</label>
-                        <select name="financial_situation" class="w-full bg-white/5 border border-white/10 p-4 rounded-xl outline-none" required>
-                            <option value="" disabled selected>Sélectionnez une option</option>
+                        <select name="financial_situation"  class="w-full bg-white/5 border border-white/10 p-4 rounded-xl outline-none" required>
+                            <option value ="<?= $_SESSION["userprofile"]->getFinancialSituation() ?>" selected><?= $_SESSION["userprofile"]->getFinancialSituation() ?></option>
                             <option value="Je suis financièrement stable">😌 Je suis financièrement stable</option>
                             <option value="Je m en sors, mais c est serré">🤕 Je m'en sors, mais c'est serré</option>
                             <option value="J ai du mal à suivre">😐 J'ai du mal à suivre</option>
@@ -212,7 +199,7 @@ $user = $_SESSION['user'];
                     <div class="space-y-2">
                         <label class="text-sm font-semibold text-gray-400 ml-1">Appareil utilisé pour apprendre</label>
                         <select name="device" class="w-full bg-white/5 border border-white/10 p-4 rounded-xl outline-none" required>
-                            <option value="" disabled selected>Sélectionnez une option</option>
+                            <option value ="<?= $_SESSION["userprofile"]->getDevice() ?>" selected><?= $_SESSION["userprofile"]->getDevice() ?></option>
                             <option>Téléphone</option>
                             <option>Ordinateur</option>
                             <option>Tablette</option>
@@ -224,7 +211,7 @@ $user = $_SESSION['user'];
                     <div class="space-y-2">
                         <label class="text-sm font-semibold text-gray-400 ml-1">Format de leçon préféré</label>
                         <select name="lesson_format" class="w-full bg-white/5 border border-white/10 p-4 rounded-xl outline-none" required>
-                            <option value="" disabled selected>Sélectionnez une option</option>
+                            <option value ="<?= $_SESSION["userprofile"]->getLessonFormat() ?>" selected><?= $_SESSION["userprofile"]->getLessonFormat() ?></option>
                             <option>Texte</option>
                             <option>Vidéo</option>
                             <option>Leçons interactives</option>
@@ -250,6 +237,5 @@ $user = $_SESSION['user'];
 
         </div>
     </main>
-
 </body>
 </html>
