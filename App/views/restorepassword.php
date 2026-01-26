@@ -52,8 +52,12 @@
                 <p class="text-gray-400 text-sm mt-2">Choisissez un nouveau mot de passe robuste pour protéger vos revenus.</p>
             </div>
 
-            <form action="#" method="POST" class="space-y-5">
+            <form action="<?= $_ENV["BASE_PATH"] ?>/updatePassword" method="POST" class="space-y-5">
                 
+                <!-- Email -->
+
+                <input type="hidden" name="email" value="<?= $_SESSION['email'] ?>">
+
                 <!-- NOUVEAU MOT DE PASSE -->
                 <div class="space-y-2">
                     <label class="text-xs font-bold text-gray-500 uppercase tracking-widest ml-1">Nouveau mot de passe</label>
@@ -61,7 +65,7 @@
                         <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-gray-500">
                             <i class="fas fa-lock"></i>
                         </span>
-                        <input type="password" id="password" required
+                        <input type="password" name="password" id="password" required
                             class="input-field w-full pl-11 pr-4 py-4 rounded-2xl text-white placeholder:text-gray-600"
                             placeholder="••••••••">
                     </div>
@@ -74,7 +78,7 @@
                         <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-gray-500">
                             <i class="fas fa-shield-check"></i>
                         </span>
-                        <input type="password" id="confirm_password" required
+                        <input type="password" name="password_confirmation" id="confirm_password" required
                             class="input-field w-full pl-11 pr-4 py-4 rounded-2xl text-white placeholder:text-gray-600"
                             placeholder="••••••••">
                     </div>

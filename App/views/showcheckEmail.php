@@ -59,14 +59,14 @@
             </div>
 
             <!-- FORMULAIRE -->
-            <form action="<?= $_ENV["BASE_PATH"] ?>/restorepassword" method="POST" class="space-y-6">
+            <form action="<?= $_ENV["BASE_PATH"] ?>/valideEmail" method="POST" class="space-y-6">
                 <div class="space-y-2">
                     <label class="text-xs font-bold text-gray-500 uppercase tracking-widest ml-1">Adresse Email</label>
                     <div class="relative">
                         <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-gray-500">
                             <i class="fas fa-envelope"></i>
                         </span>
-                        <input type="email" id="email" required
+                        <input type="email" name="email" id="email" required
                             class="input-field w-full pl-11 pr-4 py-4 rounded-2xl text-white placeholder:text-gray-600"
                             placeholder="exemple@email.com">
                     </div>

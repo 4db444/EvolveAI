@@ -26,7 +26,7 @@ class UserRestorepasswordService{
         ];
 
         $user = $this->userrestorepasswordRepo->findByEmail(trim($email));
-        $userrestorepassword = new UserRestorepassword($user["id"], $user["email"], $user["password"]);
+        $userrestorepassword = new UserRestorepassword($user->getId(), $user->getEmail(), $user->getPassword());
 
         return [
             "success" => true,
@@ -52,7 +52,8 @@ class UserRestorepasswordService{
         ];
 
         $user = $this->userrestorepasswordRepo->findByEmail(trim($email));
-        $userrestorepassword = new UserRestorepassword($user["id"], $email, password_hash($password, PASSWORD_DEFAULT));
+        $_SESSION["id"] = $user ? $user->getId() : $_SESSION["id"];
+        $userrestorepassword = new UserRestorepassword($_SESSION["id"], $email, password_hash($password, PASSWORD_DEFAULT));
 
         $this->userrestorepasswordRepo->chngePassword($userrestorepassword);
 

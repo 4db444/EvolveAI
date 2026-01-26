@@ -18,5 +18,6 @@
     Router::Get("/tasks", [TasksControler::class, "tasks"]);
     Router::Get("/oportunity", [OportunityControler::class, "oportunity"]);
     
-    Router::Get("/checkemail", [UserRestorepasswordController::class, "checkEmail"]);
-    Router::POST("/restorepassword", [UserRestorepasswordController::class, "findByEmail"]);
+    Router::Get("/showcheckEmail", [UserRestorepasswordController::class, "showcheckEmail"]);
+    Router::POST("/valideEmail", [UserRestorepasswordController::class, "valideEmail"]);
+    Router::POST("/updatePassword", [UserRestorepasswordController::class, "updatePassword"]);

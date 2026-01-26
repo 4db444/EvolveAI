@@ -13,7 +13,7 @@ use PDO;
 
         public function chngePassword(UserRestorepassword $userrestorepassword): void{
         
-            $stmt = $this->pdo->prepare("UPDATE users SET passwrod = :password_hash WHERE id = :id");
+            $stmt = $this->pdo->prepare("UPDATE users SET password_hash = :password_hash WHERE id = :id");
             $stmt->execute(
                 [
                     ':password_hash'=>$userrestorepassword->getPassword(),
@@ -21,7 +21,6 @@ use PDO;
                 ]
             );
 
-            $userrestorepassword->setId($this->pdo->lastInsertId());
 
         }
 

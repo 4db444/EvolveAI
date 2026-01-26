@@ -8,7 +8,7 @@
 
     class UserRestorepasswordController extends Controller{
         
-        public function findByEmail(
+        public function valideEmail(
             string $email
            
         ){
@@ -22,11 +22,11 @@
                 return $this->redirect("/auth/signup");
             }
 
-            
-            return $this->redirect("/restorepassword");
+            $_SESSION["email"] = $result["userrestorepassword"]->getEmail();
+            return $this->render("restorepassword");
         }
 
-        public function userrestorePassword(
+        public function updatePassword(
             string $email,
             string $password,
             string $password_confirmation,
@@ -41,14 +41,14 @@
             );
 
             if(!$result['success']){
-                return $this->redirect("/auth/signup");
+                return $this->render("restorepassword");
             }
 
             return $this->redirect("/auth/login");
         }
       
-        public function checkEmail () {
-            return $this->render("checkemail");
+        public function showcheckEmail () {
+            return $this->render("showcheckEmail");
         }
 
         public function restorePassword () {
