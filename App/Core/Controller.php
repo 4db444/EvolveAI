@@ -9,6 +9,6 @@
         }
 
         protected function redirect (string $location) {
-            header("location: $location");
+            header("location: " .$_ENV["BASE_PATH"].$location);
         }
     }

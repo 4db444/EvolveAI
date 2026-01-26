@@ -1,4 +1,5 @@
--- Active: 1769116929061@@127.0.0.1@5432@evolveai
+-- Active: 1768312369187@@127.0.0.1@5432@evolveai@public
+
 CREATE DATABASE evolveai;
 CREATE TABLE users(
     id SERIAL PRIMARY KEY,
@@ -109,3 +110,8 @@ CREATE TABLE resources (
     generated_by_ai BOOLEAN DEFAULT FALSE,
     FOREIGN KEY (task_id) REFERENCES tasks(id)
 );
+
+
+
+SELECT * from resources;
+
