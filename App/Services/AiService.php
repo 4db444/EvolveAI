@@ -1,15 +1,10 @@
 <?php
     namespace App\Services;
 
-    use App\Tepositories\UserProfileRepositoryInterface;
     use App\Models\UserProfile;
 
     class AiService {
-        public function __construct (
-            private UserProfileRepositoryInterface $user_profile_repo
-        ) {}
-
-        private function send (string $content) {
+        private static function send (string $content) {
             $token = $_ENV["TOKEN"];
             $url = "https://router.huggingface.co/v1/chat/completions";
 
@@ -52,8 +47,8 @@
             return $response;
         }
 
-        public function create_suggestions (int $user_id) {
-            $user_profile = json_encode($this->user_profile_repo->findByUserId($user_id));
+        public static function create_suggestions (int $user_id, UserProfile $user_profile, string $interest) {
+            $user_profile = json_encode($user_profile);
 
             $message = <<<MESSAGE
                 You are an AI income opportunity generator.
@@ -62,6 +57,9 @@
 
                 USER PROFILE:
                 $user_profile
+
+                USER INTERESTS:
+                $interest
 
                 STRICT OUTPUT RULES (MANDATORY):
 
@@ -98,20 +96,22 @@
                 If you include code fences, markdown, or any text outside the JSON object, the response is INVALID.
             MESSAGE;
 
-            return $this->send($message);
+            return self::send($message);
         }
 
-        public function create_opertunity (string $title, $description) {
+        public static function create_opportunity (string $title, $description, string $current_date) {
             $message = <<<MESSAGE
                 You are an AI opportunity structuring assistant.
 
-                Your task is to take an opportunity title and opportunity description provided by the user and generate a fully structured opportunity along with a set of actionable tasks that help the user achieve the opportunity goal.
+                Your task is to take an opportunity title and opportunity description and the current date (to start planning from) provided by the user and generate a fully structured opportunity along with a set of actionable tasks that help the user achieve the opportunity goal.
 
                 INPUT PROVIDED TO YOU:
 
                 - opportunity_title: $title
 
                 - opportunity_description: $description
+
+                - current_date: $current_date
 
                 YOUR OUTPUT MUST INCLUDE:
 
@@ -126,8 +126,6 @@
                 - description (string)
 
                 - earning_estimate (string)
-
-                - status (string)
 
                 TASK STRUCTURE (ARRAY):
                 Each task must include:
@@ -202,6 +200,6 @@
                 If you include markdown, code fences, explanations, or any text outside the JSON object, the response is INVALID.
             MESSAGE;
 
-            $response = $this->send($message);
+            return self::send($message);
         }
     }
