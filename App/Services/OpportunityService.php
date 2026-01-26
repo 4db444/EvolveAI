@@ -12,7 +12,7 @@ class OpportunityService{
         $this->opportunityRepo = $opportunityRepo;
     }
 
-    public function createOpportunity(int $user_id , string $title , string $description , float $earning_estimate){
+    public function createOpportunity(int $user_id , string $title , string $description , string $earning_estimate){
 
         $opportunity = new Opportunity(
             null,
@@ -23,8 +23,7 @@ class OpportunityService{
             'active'
         );
 
-        $this->opportunityRepo->save($opportunity);
-
+        return $this->opportunityRepo->save($opportunity);
     }
 
     public function getById(int $id): ?Opportunity{
