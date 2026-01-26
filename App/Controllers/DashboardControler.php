@@ -6,6 +6,6 @@
     class DashboardControler extends Controller{
 
         public function dashboard(){
-            return $this->render("dashboard");
+            return $this->render("dashboard", ["user" => $_SESSION["user"]]);
         }
     }
