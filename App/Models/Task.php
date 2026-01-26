@@ -9,6 +9,8 @@ class Task {
     private string $deadLine;
     private int $orderIndex;
     private string $targetSkill;
+    public $progress = null;
+    public $resources = null;
 
     public function __construct(?int $id, int $opportunityId, string $title, string $description, string $deadLine, int $orderIndex, string $targetSkill){
 
