@@ -95,7 +95,7 @@ class UserProfile
         $this->lesson_format = $lesson_format;
     }
 
-    public static function UserProfieFromArray (array $user_profile) :UserProfile {
+    public static function UserProfileFromArray (array $user_profile) :UserProfile {
         return new self (
             $user_profile["id"],
             $user_profile["user_id"],

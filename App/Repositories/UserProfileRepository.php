@@ -21,10 +21,11 @@ class UserProfileRepository implements UserProfileRepositoryInterface{
 
         $stmt->execute(['id' => $id]);
 
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC); 
 
         return $user ? UserProfile::UserProfileFromArray($user) : NULL;
     }
+    
      public function findByUserId(int $userId): ?UserProfile
     {
         $stmt = $this->db->prepare(
