@@ -22,6 +22,7 @@
 
     <div class="glass w-full max-w-md p-8 rounded-3xl">
         <h2 class="text-3xl font-bold mb-2">Bon retour !</h2>
+        
         <p class="text-gray-400 mb-8">Connectez-vous pour accéder à vos plans.</p>
         <form action="<?= $_ENV["BASE_PATH"] ?>/auth/login"  method="POST" class="space-y-4">
             <input name="email" type="email" placeholder="Email" class="w-full bg-white/5 border border-white/10 p-4 rounded-xl focus:ring-2 ring-purple-500 transition outline-none text-white">

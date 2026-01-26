@@ -113,4 +113,5 @@ CREATE TABLE resources (
 
 
 
-SELECT * from users;
+SELECT * from resources;
+
