@@ -44,7 +44,7 @@
                 <i class="fas fa-chart-line text-purple-400"></i>
                 <span class="font-medium">Vue d'ensemble</span>
             </a>
-            <a href="<?= $_ENV["BASE_PATH"] ?>/oportunity" class="flex items-center space-x-3 p-3 rounded-lg sidebar-link transition text-gray-400 hover:text-white">
+            <a href="<?= $_ENV["BASE_PATH"] ?>/opportunity" class="flex items-center space-x-3 p-3 rounded-lg sidebar-link transition text-gray-400 hover:text-white">
                 <i class="fas fa-robot"></i>
                 <span>Stratégies IA</span>
             </a>
@@ -179,25 +179,8 @@
                         </div>
                     </div>
                 </form>
-
-                <!-- ZONE DE DANGER -->
-                <div class="glass border-red-500/20 p-8 rounded-3xl">
-                    <h3 class="text-red-400 font-bold flex items-center mb-2">
-                        <i class="fas fa-exclamation-triangle mr-2"></i> Zone de danger
-                    </h3>
-                    <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-                        <p class="text-sm text-gray-400 text-center md:text-left">
-                            Une fois votre compte supprimé, toutes vos données et vos revenus générés par l'IA seront définitivement effacés.
-                        </p>
-                        <button class="px-6 py-2 border border-red-500/50 text-red-500 rounded-lg hover:bg-red-500 hover:text-white transition text-sm font-bold">
-                            Supprimer le compte
-                        </button>
-                    </div>
-                </div>
-
             </div>
         </div>
     </main>
-
 </body>
 </html>
