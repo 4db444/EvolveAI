@@ -108,3 +108,5 @@ CREATE TABLE resources (
     generated_by_ai VARCHAR(255) DEFAULT FALSE,
     FOREIGN KEY (task_id) REFERENCES tasks(id)
 );
+
+select * from user_profiles;

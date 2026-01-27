@@ -13,11 +13,11 @@ use PDO;
 
         public function chngePassword(UserRestorepassword $userrestorepassword): void{
         
-            $stmt = $this->pdo->prepare("UPDATE users SET password_hash = :password_hash WHERE id = :id");
+            $stmt = $this->pdo->prepare("UPDATE users SET password_hash = :password_hash WHERE email = :email");
             $stmt->execute(
                 [
                     ':password_hash'=>$userrestorepassword->getPassword(),
-                    ':id'=>$userrestorepassword->getId()
+                    ':email'=>$userrestorepassword->getEmail()
                 ]
             );
 

@@ -26,5 +26,8 @@
     Router::Get("/oportunity", [OportunityControler::class, "oportunity"]);
     
     Router::Get("/showcheckEmail", [UserRestorepasswordController::class, "showcheckEmail"]);
-    Router::POST("/valideEmail", [UserRestorepasswordController::class, "valideEmail"]);
+    Router::POST("/valideEmail", [UserRestorepasswordController::class, "valideEmail"]); 
     Router::POST("/updatePassword", [UserRestorepasswordController::class, "updatePassword"]);
+
+    Router::POST("/updateQuestion", [ProfilControler::class, "updateQuestion"]);
+    Router::POST("/updateInfo", [ProfilControler::class, "updateInfo"]);

@@ -31,8 +31,14 @@ class UserService{
             "errors" => $errors
         ];
 
+
+        $user_id = null;
+
+        if (isset($_SESSION["user_id"])) {
+            $user_id = $_SESSION["user_id"];
+        } 
             
-        $user = new User(null , $fullname , $email , password_hash($password, PASSWORD_DEFAULT));
+        $user = new User($user_id , $fullname , $email , password_hash($password, PASSWORD_DEFAULT));
 
         $this->userRepo->save($user);
 
@@ -47,6 +53,7 @@ class UserService{
         $user = $this->userRepo->findByEmail(trim($email));
         
         if ($user && $user->verifyPassword($password)) {
+            
             return [
                 "success" => true,
                 "user" => $user

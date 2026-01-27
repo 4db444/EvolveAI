@@ -21,10 +21,11 @@ class UserProfileRepository implements UserProfileRepositoryInterface{
 
         $stmt->execute(['id' => $id]);
 
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC); 
 
         return $user ? UserProfile::UserProfileFromArray($user) : NULL;
     }
+    
      public function findByUserId(int $userId): ?UserProfile
     {
         $stmt = $this->db->prepare(
@@ -37,6 +38,7 @@ class UserProfileRepository implements UserProfileRepositoryInterface{
         return $user ? UserProfile::UserProfileFromArray($user) : NULL;
 
     }
+    
     public function save(UserProfile $profile)
     {
         //insert
@@ -65,12 +67,12 @@ class UserProfileRepository implements UserProfileRepositoryInterface{
                      work_hours = :work_hours,
                      financial_situation = :financial_situation,
                      device = :device,
-                     lesson_format = :lesson_format,
-                 WHERE id = :id"
+                     lesson_format = :lesson_format
+                 WHERE user_id = :user_id"
             );
     
             return $stmt->execute([
-                ':id' => $profile->getId(),
+                ':user_id' => $profile->getUserId(),
                 ':age_interval' => $profile->getAgeInterval(),
                 ':work_rhythm' => $profile->getWorkRhythm(),
                 ':work_hours' => $profile->getWorkHours(),

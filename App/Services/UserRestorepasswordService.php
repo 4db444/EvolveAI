@@ -52,8 +52,8 @@ class UserRestorepasswordService{
         ];
 
         $user = $this->userrestorepasswordRepo->findByEmail(trim($email));
-        $_SESSION["id"] = $user ? $user->getId() : $_SESSION["id"];
-        $userrestorepassword = new UserRestorepassword($_SESSION["id"], $email, password_hash($password, PASSWORD_DEFAULT));
+        $_SESSION["email"] = $user ? $user->getEmail() : $_SESSION["email"];
+        $userrestorepassword = new UserRestorepassword(null, $email, password_hash($password, PASSWORD_DEFAULT));
 
         $this->userrestorepasswordRepo->chngePassword($userrestorepassword);
 
